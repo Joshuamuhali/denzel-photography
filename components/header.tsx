@@ -1,8 +1,12 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import { useContact } from "@/context/contact-context"
 
 export function Header() {
+  const { openContactForm } = useContact()
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b">
       <div className="container mx-auto px-6 py-4">
@@ -14,6 +18,8 @@ export function Header() {
               width={180}
               height={40}
               className="h-8 w-auto"
+              priority={true}
+              sizes="(max-width: 768px) 140px, 180px"
             />
           </Link>
 
@@ -30,9 +36,17 @@ export function Header() {
             <Link href="#portfolio" className="text-sm font-medium hover:text-[#D97757] transition-colors">
               Portfolio
             </Link>
+            <Link href="#pricing" className="text-sm font-medium hover:text-[#D97757] transition-colors">
+              Rate Card
+            </Link>
           </nav>
 
-          <Button className="bg-[#D97757] hover:bg-[#D97757]/90 text-white font-semibold">Book a Session</Button>
+          <Button 
+            onClick={() => openContactForm("booking")}
+            className="bg-[#D97757] hover:bg-[#D97757]/90 text-white font-semibold"
+          >
+            Book a Session
+          </Button>
         </div>
       </div>
     </header>

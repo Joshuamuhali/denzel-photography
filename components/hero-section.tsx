@@ -3,8 +3,16 @@
 import { Button } from "@/components/ui/button"
 import { MapPin } from "lucide-react"
 import { motion } from "framer-motion"
+import { useContact } from "@/context/contact-context"
 
 export function HeroSection() {
+  const { openContactForm } = useContact()
+  
+  const scrollToAbout = (e: React.MouseEvent) => {
+    e.preventDefault()
+    const aboutSection = document.getElementById('about')
+    aboutSection?.scrollIntoView({ behavior: 'smooth' })
+  }
   return (
     <section className="pt-32 pb-16 px-6" id="home">
       <div className="container mx-auto max-w-6xl">
@@ -81,10 +89,14 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="flex flex-wrap gap-4 justify-center"
         >
-          <Button className="bg-[#FDB913] hover:bg-[#FDB913]/90 text-black font-semibold px-8 rounded-lg">
+          <Button 
+            onClick={() => openContactForm("booking")}
+            className="bg-[#FDB913] hover:bg-[#FDB913]/90 text-black font-semibold px-8 rounded-lg"
+          >
             Book a Session
           </Button>
           <Button
+            onClick={scrollToAbout}
             variant="outline"
             className="font-semibold border-foreground/20 hover:bg-muted bg-transparent px-8 rounded-lg"
           >

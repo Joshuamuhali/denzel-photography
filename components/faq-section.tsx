@@ -3,9 +3,11 @@
 import { useState } from "react"
 import { Plus } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useContact } from "@/context/contact-context"
 
 export function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const { openContactForm } = useContact()
 
   const faqs = [
     {
@@ -53,7 +55,12 @@ export function FaqSection() {
                 Have questions about our photography services? We've compiled answers to the most common questions to
                 help you understand what to expect when working with Denzel Photography.
               </p>
-              <Button className="bg-[#D97757] hover:bg-[#D97757]/90 text-white font-semibold">Contact Us</Button>
+              <Button 
+                onClick={() => openContactForm("contact")}
+                className="bg-[#D97757] hover:bg-[#D97757]/90 text-white font-semibold"
+              >
+                Contact Us
+              </Button>
             </div>
 
             <div className="space-y-4">

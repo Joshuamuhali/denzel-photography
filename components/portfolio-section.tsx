@@ -1,8 +1,9 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
+import { useState, useEffect, useCallback } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import { X, ChevronLeft, ChevronRight, Heart, Bookmark, Share2 } from "lucide-react"
+import Image from "next/image"
 
 const categories = [
   { 
@@ -203,7 +204,7 @@ export function PortfolioSection() {
         const newCount = prev + nextBatchSize;
         // Preload next batch of images
         for (let i = prev; i < newCount && i < filteredPhotos.length; i++) {
-          const img = new Image();
+          const img = new window.Image();
           img.src = filteredPhotos[i].src;
         }
         return newCount;
@@ -291,10 +292,14 @@ export function PortfolioSection() {
               title={category.description}
             >
               <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden mb-2 border-2 border-gray-200">
-                <img 
+                <Image 
                   src={category.icon} 
                   alt={category.name}
+                  width={80}
+                  height={80}
                   className="w-full h-full object-cover"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 64px, 80px"
                 />
               </div>
               <span className="text-sm font-medium whitespace-nowrap">
@@ -316,17 +321,23 @@ export function PortfolioSection() {
               className="group relative rounded-2xl overflow-hidden aspect-square cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300"
               onClick={() => setSelectedImage(visiblePhotos.indexOf(photo))}
             >
-              <img
-                src={photo.src}
-                alt={photo.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                loading="lazy"
-                onError={(e) => {
-                  // Fallback for broken images
-                  const target = e.target as HTMLImageElement;
-                  target.src = '/placeholder.svg';
-                }}
-              />
+              <div className="w-full h-full relative">
+                <Image
+                  src={photo.src}
+                  alt={photo.title}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading={index < 6 ? 'eager' : 'lazy'}
+                  quality={75}
+                  placeholder="blur"
+                  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = '/placeholder.svg';
+                  }}
+                />
+              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
                 <h3 className="text-white font-bold text-sm sm:text-base">{photo.title}</h3>
                 <p className="text-white/80 text-xs sm:text-sm">{photo.date}</p>
