@@ -1,15 +1,15 @@
-import dynamic from 'next/dynamic';
+// @ts-nocheck
+'use client';
 
-// Dynamically import components with proper typing
-const Header = dynamic(() => import('@/components/header').then(mod => mod.Header));
-const HeroSection = dynamic(() => import('@/components/hero-section').then(mod => mod.HeroSection));
-const WhyChooseSection = dynamic(() => import('@/components/why-choose-section').then(mod => mod.WhyChooseSection));
-const AboutSection = dynamic(() => import('@/components/about-section').then(mod => mod.AboutSection));
-const ServicesSection = dynamic(() => import('@/components/services-section').then(mod => mod.ServicesSection));
-const PortfolioSection = dynamic(() => import('@/components/portfolio-section').then(mod => mod.PortfolioSection));
-const PricingSection = dynamic(() => import('@/components/pricing-section').then(mod => mod.PricingSection));
-const FaqSection = dynamic(() => import('@/components/faq-section').then(mod => mod.FaqSection));
-const Footer = dynamic(() => import('@/components/footer').then(mod => mod.Footer));
+import { Header } from "@/components/header"
+import { HeroSection } from "@/components/hero-section"
+import { WhyChooseSection } from "@/components/why-choose-section"
+import { AboutSection } from "@/components/about-section"
+import { ServicesSection } from "@/components/services-section"
+import { PortfolioSection } from "@/components/portfolio-section"
+import { PricingSection } from "@/components/pricing-section"
+import { FaqSection } from "@/components/faq-section"
+import { Footer } from "@/components/footer"
 
 export default function Home() {
   return (
