@@ -1,5 +1,8 @@
 packages:
-  - 'app'
-  - 'components'
-  - 'lib'
-  - 'node_modules/.pnpm/*'
+  - app
+  - components
+  - lib
+  - node_modules/.pnpm/*
+
+ignoredBuiltDependencies:
+  - '@tailwindcss/oxide'
