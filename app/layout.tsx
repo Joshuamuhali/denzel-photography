@@ -3,7 +3,7 @@ import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import { Analytics } from '@vercel/analytics/next'
 import { ContactProvider } from '@/context/contact-context'
-import './globals.css'
+import './globals-fixed.css'
 
 export const metadata: Metadata = {
   title: 'v0 App',
