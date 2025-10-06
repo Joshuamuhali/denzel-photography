@@ -43,28 +43,52 @@ const categories = [
   }
 ]
 
+// Type for portfolio image objects
+interface PortfolioImage {
+  src: string;
+  category: string;
+  title: string;
+  date: string;
+}
+
 // Function to get all image paths from the photos2 directory
-const getPhotos2Images = () => {
+const getPhotos2Images = (): PortfolioImage[] => {
   // List of outdoor images
-  const outdoorImages = [
+  const outdoorImages: string[] = [
+    'denzel_studios-6.jpg',
+    'denzel_studios-17.jpg',
+    'denzel_studios-18.jpg',
+    'denzel_studios-379.jpgd.jpg',
+    'denzel_studios-383.jpgf.jpg',
+    'denzel_studios-392.jpgf.jpg',
+    'denzel_studios-509.jpgj.jpg',
+    'denzel_studios-512.jpgy.jpg',
+    'denzel_studios-513.jpgd.jpgg.jpg',
+    'denzel_studios-64g.jpg',
+    'denzel_studios MG-14k.jpg',
     'denzel_studios MG-173.jpg',
+    'denzel_studios MG-18-Recovered-Recoveredfh.jpg',
+    'denzel_studios MG-534.jpg',
+    'denzel_studios MG-537.jpg',
+    'denzel_studios MG-538.jpg',
     'denzel_studios MG-574s.jpg',
-    'IMG_0174.jpg',
-    'IMG_0177.jpg',
-    'IMG_0185.jpg',
-    'IMG_0195.jpg'
+    'denzel_studios MG-724t.jpg',
+    'denzel_studios MG-753 copy.jpg'
   ];
 
-  // List of cultural images (shared with outdoor)
-  const culturalImages = [
+  // List of cultural images
+  const culturalImages: string[] = [
     'IMG_0174.jpg',
     'IMG_0177.jpg',
     'IMG_0185.jpg',
-    'IMG_0195.jpg'
+    'IMG_0195.jpg',
+    'denzel_studios-6.jpg',
+    'denzel_studios-17.jpg',
+    'denzel_studios-18.jpg'
   ];
 
   // All other images will be in the general portfolio
-  const otherImages = [
+  const otherImages: string[] = [
     'Denzel_shot_it-238gg.jpg',
     'IMG-20250527-WA0019.jpg',
     'IMG_0166.jpg',
@@ -95,53 +119,39 @@ const getPhotos2Images = () => {
     'IMG_9517.jpg',
     'IMG_9897.jpg',
     '_MG_0836.jpgf.jpg',
-    '_MG_4703.jpg',
-    'denzel_studios MG-14k.jpg',
-    'denzel_studios MG-18-Recovered-Recoveredfh.jpg',
-    'denzel_studios MG-534.jpg',
-    'denzel_studios MG-537.jpg',
-    'denzel_studios MG-538.jpg',
-    'denzel_studios MG-724t.jpg',
-    'denzel_studios MG-753 copy.jpg',
-    'denzel_studios-17.jpg',
-    'denzel_studios-18.jpg',
-    'denzel_studios-379.jpgd.jpg',
-    'denzel_studios-383.jpgf.jpg',
-    'denzel_studios-392.jpgf.jpg',
-    'denzel_studios-509.jpgj.jpg',
-    'denzel_studios-512.jpgy.jpg',
-    'denzel_studios-513.jpgd.jpgg.jpg',
-    'denzel_studios-6.jpg',
-    'denzel_studios-64g.jpg'
+    '_MG_4703.jpg'
   ];
 
-  // Combine all images with their categories
-  const outdoorPhotos = outdoorImages.map((image, index) => ({
-    src: `/photos2/${image}`,
-    category: "Outdoor",
-    title: `Outdoor Shot ${index + 1}`,
-    date: "2024"
-  }));
+  // Create photo objects with proper types
+  const createPhoto = (filename: string, category: string, index: number): PortfolioImage => {
+    // Ensure the filename doesn't start with a slash to avoid double slashes
+    const cleanFilename = filename.startsWith('/') ? filename.slice(1) : filename;
+    return {
+      src: `/${cleanFilename}`,
+      category,
+      title: filename.split('.')[0].replace(/[-_]/g, ' ').replace('photos2/', ''),
+      date: '2024'
+    };
+  };
 
-  const culturalPhotos = culturalImages.map((image, index) => ({
-    src: `/photos2/${image}`,
-    category: "Cultural",
-    title: `Cultural Event ${index + 1}`,
-    date: "2024"
-  }));
+  // Combine all photos with their categories
+  const outdoorPhotos = outdoorImages.map((image, index) => 
+    createPhoto(image, 'Outdoor', index)
+  );
 
-  const portfolioPhotos = otherImages.map((image, index) => ({
-    src: `/photos2/${image}`,
-    category: "Portfolio",
-    title: `Portfolio ${index + 1}`,
-    date: "2024"
-  }));
+  const culturalPhotos = culturalImages.map((image, index) => 
+    createPhoto(image, 'Cultural', index)
+  );
+
+  const portfolioPhotos = otherImages.map((image, index) => 
+    createPhoto(image, 'Portfolio', index)
+  );
 
   // Combine all photos, with cultural photos taking precedence for shared images
   const allPhotos = [...outdoorPhotos, ...culturalPhotos, ...portfolioPhotos];
   
   // Remove duplicates (in case of shared images between categories)
-  const uniquePhotos: { src: string; category: string; title: string; date: string }[] = [];
+  const uniquePhotos: PortfolioImage[] = [];
   const seen = new Set<string>();
   
   // Process cultural photos first to ensure they take precedence
@@ -155,33 +165,92 @@ const getPhotos2Images = () => {
   return uniquePhotos;
 };
 
-const allPhotos = [
-  // Original photos
-  { src: "/photos/wedding-couple-outdoor.jpg", category: "Wedding", title: "Garden Wedding", date: "2024" },
-  { src: "/photos/bride-outdoor.jpg", category: "Wedding", title: "Bridal Portrait", date: "2024" },
-  { src: "/photos/groom-white-suit.jpg", category: "Wedding", title: "Groom Style", date: "2024" },
-  { src: "/photos/woman-olive-overalls.jpg", category: "Indoor", title: "Studio Portrait", date: "2024" },
-  { src: "/photos/woman-pink-dress.jpg", category: "Indoor", title: "Fashion Portrait", date: "2024" },
-  { src: "/photos/maternity-white-dress.jpg", category: "Indoor", title: "Maternity Session", date: "2024" },
-  { src: "/photos/maternity-couple.jpg", category: "Indoor", title: "Expecting Joy", date: "2024" },
-  { src: "/photos/purple-bangles.jpg", category: "Indoor", title: "Accessory Focus", date: "2024" },
-  { src: "/photos/colorful-jacket.jpg", category: "Outdoor", title: "Street Style", date: "2024" },
-  { src: "/photos/purple-dress-ocean.jpg", category: "Outdoor", title: "Ocean Breeze", date: "2024" },
-  { src: "/photos/sneakers-balloons.jpg", category: "Baby & Kids", title: "Birthday Fun", date: "2024" },
-  { src: "/photos/ladder-balloons.jpg", category: "Baby & Kids", title: "Party Setup", date: "2024" },
-  
-  // Add all photos from photos2 directory
-  ...getPhotos2Images()
-];
+// Get all photos from the photos2 directory
+const photos2Images = getPhotos2Images();
+
+// Use only the photos from the photos2 directory
+const allPhotos = photos2Images.map(photo => ({
+  ...photo,
+  src: `/photos2/${photo.src.startsWith('/') ? photo.src.slice(1) : photo.src}`
+}));
+
+// Portfolio section metadata
+const portfolioMetadata = {
+  title: "Portfolio | Denzel Studios - Professional Photography",
+  description: "Explore our stunning photography portfolio featuring weddings, portraits, and cultural events. Capturing life's precious moments with artistic excellence.",
+  keywords: "photography portfolio, wedding photography, portrait photography, cultural events, professional photographer, Denzel Studios",
+  author: "Denzel Studios",
+  openGraph: {
+    type: "website",
+    url: "https://denzelstudios.com/portfolio",
+    title: "Portfolio | Denzel Studios - Professional Photography",
+    description: "Explore our stunning photography portfolio featuring weddings, portraits, and cultural events.",
+    images: [{
+      url: photos2Images[0]?.src ? `/photos2/${photos2Images[0].src}` : "/photos2/denzel_studios-6.jpg",
+      width: 1200,
+      height: 800,
+      alt: "Photography by Denzel Studios"
+    }]
+  }
+};
 
 export function PortfolioSection() {
-  const [selectedCategory, setSelectedCategory] = useState("All")
-  // Use -1 to indicate no image is selected instead of null for better type safety
-  const [selectedImage, setSelectedImage] = useState<number>(-1)
-  const [displayedPhotos, setDisplayedPhotos] = useState(16) // Load more items initially for better scroll experience
-  const [isLiked, setIsLiked] = useState(false)
-  const [isBookmarked, setIsBookmarked] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedImage, setSelectedImage] = useState<number>(-1);
+  const [displayedPhotos, setDisplayedPhotos] = useState(16);
+  const [isLiked, setIsLiked] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  
+  // Set page metadata when component mounts
+  useEffect(() => {
+    document.title = portfolioMetadata.title;
+    
+    // Add meta description
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.setAttribute('content', portfolioMetadata.description);
+    
+    // Add meta keywords
+    let metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (!metaKeywords) {
+      metaKeywords = document.createElement('meta');
+      metaKeywords.setAttribute('name', 'keywords');
+      document.head.appendChild(metaKeywords);
+    }
+    metaKeywords.setAttribute('content', portfolioMetadata.keywords);
+    
+    // Add Open Graph meta tags
+    const ogTags = [
+      { property: 'og:title', content: portfolioMetadata.openGraph.title },
+      { property: 'og:description', content: portfolioMetadata.openGraph.description },
+      { property: 'og:type', content: portfolioMetadata.openGraph.type },
+      { property: 'og:url', content: portfolioMetadata.openGraph.url },
+      { property: 'og:image', content: portfolioMetadata.openGraph.images[0].url },
+      { property: 'og:image:width', content: String(portfolioMetadata.openGraph.images[0].width) },
+      { property: 'og:image:height', content: String(portfolioMetadata.openGraph.images[0].height) },
+      { property: 'og:image:alt', content: portfolioMetadata.openGraph.images[0].alt }
+    ];
+    
+    ogTags.forEach(tag => {
+      let metaTag = document.querySelector(`meta[property="${tag.property}"]`);
+      if (!metaTag) {
+        metaTag = document.createElement('meta');
+        metaTag.setAttribute('property', tag.property);
+        document.head.appendChild(metaTag);
+      }
+      metaTag.setAttribute('content', tag.content);
+    });
+    
+    // Cleanup function to remove meta tags when component unmounts
+    return () => {
+      document.title = 'Denzel Studios';
+    };
+  }, []);
 
   const filteredPhotos = selectedCategory === "All" 
     ? allPhotos 

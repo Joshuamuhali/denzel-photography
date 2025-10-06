@@ -44,7 +44,7 @@ export function ServicesSection() {
             Our <span className="text-[#FDB913]">Services</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Our organization boasts a vibrant team of over 1,500 dedicated professionals, each bringing unique skills
+            Our organization boasts a vibrant team of over 15 dedicated professionals, each bringing unique skills
             and perspectives. Together, we work towards a common goal of delivering exceptional solutions tailored to
             our clients' diverse needs.
           </p>

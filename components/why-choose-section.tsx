@@ -21,12 +21,12 @@ export function WhyChooseSection() {
         >
           <div className="relative z-10">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center">
-              Why choose <span className="text-[#FDB913]">C&A?</span>
+              Why Choose <span className="text-[#FDB913]">Denzel Studios?</span>
             </h2>
             <p className="text-center text-gray-400 max-w-2xl mx-auto mb-12 text-sm leading-relaxed">
-              Our organization boasts a vibrant team of over 1,500 dedicated professionals, each bringing unique skills
-              and perspectives. Together, we work towards a common goal of delivering exceptional solutions tailored to
-              our clients' diverse needs.
+              At Denzel Studios, we combine artistic vision with technical expertise to capture your most precious moments.
+              Our team of 15 passionate photographers brings creativity and professionalism to every shoot, ensuring
+              your memories are preserved with stunning clarity and emotion.
             </p>
 
             <div className="grid md:grid-cols-3 gap-8 mb-10">
@@ -39,10 +39,10 @@ export function WhyChooseSection() {
                 <div className="w-16 h-16 bg-[#FDB913] rounded-xl flex items-center justify-center mx-auto mb-4">
                   <Users className="w-8 h-8 text-black" />
                 </div>
-                <h3 className="font-bold mb-2 text-lg">Dynamic Team of Engineers</h3>
+                <h3 className="font-bold mb-2 text-lg">Award-Winning Photographers</h3>
                 <p className="text-sm text-gray-400 leading-relaxed">
-                  Our organization boasts a vibrant team of over 1,500 skilled professionals, each contributing unique
-                  expertise to every project.
+                  Our team includes 15+ award-winning photographers, each with specialized skills in different photography
+                  styles, from weddings to commercial shoots, ensuring we have the perfect expert for your needs.
                 </p>
               </motion.div>
 
@@ -55,10 +55,10 @@ export function WhyChooseSection() {
                 <div className="w-16 h-16 bg-[#FDB913] rounded-xl flex items-center justify-center mx-auto mb-4">
                   <Building2 className="w-8 h-8 text-black" />
                 </div>
-                <h3 className="font-bold mb-2 text-lg">Top Quality Buildings</h3>
+                <h3 className="font-bold mb-2 text-lg">Unmatched Quality</h3>
                 <p className="text-sm text-gray-400 leading-relaxed">
-                  We are committed to delivering exceptional quality in every project, to a vibrant workforce of more
-                  than 1,500 skilled professionals.
+                  We're committed to delivering exceptional quality in every shot, with our team of 15 professionals
+                  dedicated to perfecting every detail of your photographs.
                 </p>
               </motion.div>
 
@@ -71,10 +71,10 @@ export function WhyChooseSection() {
                 <div className="w-16 h-16 bg-[#FDB913] rounded-xl flex items-center justify-center mx-auto mb-4">
                   <Wrench className="w-8 h-8 text-black" />
                 </div>
-                <h3 className="font-bold mb-2 text-lg">Best Tools On the Market</h3>
+                <h3 className="font-bold mb-2 text-lg">State-of-the-Art Equipment</h3>
                 <p className="text-sm text-gray-400 leading-relaxed">
-                  We utilize cutting-edge technology and tools, collaborating with a passionate team of over 1,500
-                  dedicated professionals.
+                  We invest in the latest professional cameras, lenses, and editing software, ensuring your photos
+                  are captured and processed with the highest quality possible.
                 </p>
               </motion.div>
             </div>

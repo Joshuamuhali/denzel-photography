@@ -25,7 +25,7 @@ export function AboutSection() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="space-y-4">
                 <p className="text-muted-foreground leading-relaxed">
-                  At our company, we pride ourselves on being a dynamic team of over 1,500 dedicated professionals. Each
+                  At our company, we pride ourselves on being a dynamic team of 15 dedicated professionals. Each
                   member brings a unique set of skills and expertise, contributing to our collective goal of delivering
                   exceptional photography services.
                 </p>
@@ -42,7 +42,7 @@ export function AboutSection() {
               <div className="border-l-4 border-[#FDB913] pl-4 py-2">
                 <h3 className="font-bold text-lg sm:text-xl mb-2">Our Mission</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  We envision a diverse community of 1,500 professionals who drive creativity and innovation, delivering
+                  We envision a diverse community of 15 professionals who drive creativity and innovation, delivering
                   tailored solutions that exceed expectations.
                 </p>
               </div>
@@ -50,7 +50,7 @@ export function AboutSection() {
               <div className="border-l-4 border-[#FDB913] pl-4 py-2">
                 <h3 className="font-bold text-lg sm:text-xl mb-2">Our Vision</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  We aim to create a vibrant community of 1,500 professionals who drive creativity and innovation,
+                  We aim to create a vibrant community of 15 professionals who drive creativity and innovation,
                   delivering tailored solutions that exceed expectations.
                 </p>
               </div>
